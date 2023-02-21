@@ -39,7 +39,10 @@ public class QnaService {
 		return qnaDAO.getQnaDetail(qnaDTO);
 	}
 	 
-	 public int  setQnaAdd(QnaDTO qnaDTO, MultipartFile pic) throws Exception {
+	 public int setQnaAdd(QnaDTO qnaDTO, MultipartFile pic) throws Exception {
+		 long number = qnaDAO.setQnanumber();
+		 qnaDTO.setBoardNum(number);
+		 System.out.println(qnaDTO.getBoardNum());
 		 int result = qnaDAO.setQnaAdd(qnaDTO);
 		 
 		//파일 사진이 없을경우 이미지 네임을 저장하지마!
@@ -59,10 +62,10 @@ public class QnaService {
 				qnaImgDTO.setBoardNum(qnaImgDTO.getBoardNum());
 				
 				//3. 
-				result = qnaDAO.setQnaImgAdd(qnaImgDTO);	
+				//result = qnaDAO.setQnaImgAdd(qnaImgDTO);	
 			}
 		 
-		 return qnaDAO.setQnaAdd(qnaDTO);
+		 return result;
 	 }
 	 
 	 public int setQnaUpdate(QnaDTO qnaDTO) throws Exception {

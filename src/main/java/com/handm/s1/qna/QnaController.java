@@ -17,7 +17,6 @@ import com.handm.s1.util.Pager;
 
 @Controller
 @RequestMapping("/qna/*")
-
 public class QnaController {
 	
 	@Autowired
@@ -62,7 +61,7 @@ public class QnaController {
 		System.out.println("size : "+pic.getSize());
 		System.out.println(session.getServletContext());
 		
-	
+		
 		int result = qnaService.setQnaAdd(qnaDTO, pic);
 		
 		mv.setViewName("redirect: ./list");

@@ -55,25 +55,24 @@
     <select id="getQnaDetail" parameterType="QnaDTO" resultType="QnaDTO">
 	SELECT *
 	FROM BOARD
-	WHERE BOARDNUM  = ${boardNum} 
+	WHERE BOARDNUM  = #{boardNum} 
    </select>
-
+	<select id="setQnanumber" parameterType="Long" resultType="Long">
+		SELECT QNAIMG_SEQ.NEXTVAL FROM DUAL
+	</select>
 	<insert id="setQnaAdd" parameterType="QnaDTO">
-	 <selectKey keyProperty="boardNum" resultType="Long" order="BEFORE">
-      SELECT QNA_SEQ.NEXTVAL FROM DUAL
-     </selectKey>
-	INSERT INTO BOARD 
-	VALUES(#{boardNum}, #{boardTitle},#{boardContents},#{boardWriter},#{boardDate},#{boardTotal})
+		INSERT INTO BOARD (BOARDNUM, BOARDTITLE, BOARDCONTENTS, BOARDWRITER, BOARDDATE, BOARDTOTAL) 
+		VALUES(#{boardNum}, #{boardTitle},#{boardContents},#{boardWriter},#{boardDate},#{boardTotal})
 	</insert>
 
 	<delete id="setQnaDelete" parameterType="QnaDTO">
-	DELETE BOARD WHERE BOARDNUM = ${boardNum} 
+	DELETE BOARD WHERE BOARDNUM = #{boardNum} 
 	</delete>
 	
 	<update id="setQnaUpdate" parameterType="QnaDTO">
 	UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, BOARDWRITER=#{boardWriter},
 	BOARDDATE=#{boardDate}, BOARDTOTAL=#{boardTotal}
-	WHERE BOARDNUM = ${boardNum}
+	WHERE BOARDNUM = #{boardNum}
 	</update>
 	
 	 <insert id="setQnaImgAdd" parameterType="QnaImgDTO">

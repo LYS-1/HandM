@@ -16,7 +16,9 @@ public class QnaDAO {
 	private final String NAMESPACE = "com.handm.s1.qna.QnaDAO.";
 	
 
-	
+	public Long setQnanumber() throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "setQnanumber");
+	}
 	public Long getBoardNum() throws  Exception{
 		return sqlSession.selectOne(NAMESPACE+"getBoardNum");
 
